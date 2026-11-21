@@ -50,12 +50,12 @@ Metrics Server puede tardar en proporcionar datos. Sin métricas de CPU, el HPA 
 
 ```powershell
 kubectl create namespace argocd
-kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+kubectl apply -n argocd --server-side --force-conflicts -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 kubectl get pods -n argocd
 kubectl rollout status deployment/argocd-server -n argocd --timeout=300s
 ```
 
-Si el namespace ya existe, no volver a crearlo; comprobarlo con `kubectl get namespace argocd`.
+Si el namespace ya existe, no volver a crearlo; comprobarlo con `kubectl get namespace argocd`. La opción `--server-side --force-conflicts` es la instrucción oficial actual de Argo CD para evitar el error de la anotación que supera los 262144 bytes en el CRD de ApplicationSet.
 
 Abrir un **PowerShell independiente** y mantenerlo abierto:
 
