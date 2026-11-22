@@ -6,6 +6,8 @@ metadata:
   labels:
     app: grafana
     app.kubernetes.io/part-of: taller-argo-cd
+  annotations:
+    udla.edu.ec/gitops-evidencia: "cambio-automatico-01"
 spec:
   type: NodePort
   selector:
